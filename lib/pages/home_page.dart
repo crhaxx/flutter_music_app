@@ -12,8 +12,30 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.surface,
-      appBar: AppBar(title: Text("PLAYLIST")),
+      backgroundColor: Theme.of(context).colorScheme.background,
+      appBar: AppBar(
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              icon: Icon(
+                Icons.menu,
+                color: Theme.of(context)
+                    .colorScheme
+                    .inversePrimary, // Change Custom Drawer Icon Color
+              ),
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+            );
+          },
+        ),
+        title: Text(
+          "PLAYLIST",
+          style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary),
+        ),
+        backgroundColor: Theme.of(context).colorScheme.background,
+      ),
       drawer: MyDrawer(),
     );
   }
