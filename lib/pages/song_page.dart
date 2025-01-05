@@ -6,6 +6,15 @@ import 'package:provider/provider.dart';
 class SongPage extends StatelessWidget {
   const SongPage({super.key});
 
+  //Note: convert duration into minutes and seconds
+  String formatTime(Duration duration) {
+    String twoDigitSeconds =
+        duration.inSeconds.remainder(60).toString().padLeft(2, '0');
+    String formattedTime = "${duration.inMinutes}:$twoDigitSeconds";
+
+    return formattedTime;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Consumer<PlaylistProvider>(builder: (context, value, child) {
@@ -14,6 +23,7 @@ class SongPage extends StatelessWidget {
 
       //Note: get current song
       final currentSong = playlist[value.currentSongIndex ?? 0];
+
       //Note: return scaffold UI
       return Scaffold(
         backgroundColor: Theme.of(context).colorScheme.background,
@@ -30,17 +40,30 @@ class SongPage extends StatelessWidget {
                     //Note: back button
                     IconButton(
                         onPressed: () => Navigator.pop(context),
-                        icon: Icon(Icons.arrow_back)),
+                        icon: Icon(
+                          Icons.arrow_back,
+                          color: Theme.of(context).colorScheme.inversePrimary,
+                        )),
 
                     //Note: title
-                    Text("PLAYLIST"),
+                    Text(
+                      "PLAYLIST",
+                      style: TextStyle(
+                          color: Theme.of(context).colorScheme.inversePrimary),
+                    ),
 
                     //Note: menu button
-                    IconButton(onPressed: () {}, icon: Icon(Icons.menu)),
+                    IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.menu,
+                          color: Theme.of(context).colorScheme.inversePrimary,
+                        )),
                   ],
                 ),
 
                 const SizedBox(height: 25),
+
                 //Note: album artwork
                 NeuBox(
                   child: Column(
@@ -63,11 +86,20 @@ class SongPage extends StatelessWidget {
                               children: [
                                 Text(
                                   currentSong.songName,
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 20),
+                                      fontSize: 20,
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .inversePrimary),
                                 ),
-                                Text(currentSong.artistName)
+                                Text(
+                                  currentSong.artistName,
+                                  style: TextStyle(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .inversePrimary),
+                                )
                               ],
                             ),
 
@@ -88,34 +120,54 @@ class SongPage extends StatelessWidget {
                 //Note: song duration progress
                 Column(
                   children: [
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 25),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 25),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           //Note: start time
-                          Text("0:00"),
+                          Text(
+                            formatTime(value.currentDuration),
+                            style: TextStyle(
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .inversePrimary),
+                          ),
 
-                          //Note: shuffle icon
+                          /* //Note: shuffle icon
                           Icon(Icons.shuffle),
 
                           //Note: repeat icon
-                          Icon(Icons.repeat),
+                          Icon(Icons.repeat), */
 
                           //Note: end time
-                          Text("0:00"),
+                          Text(
+                            formatTime(value.totalDuration),
+                            style: TextStyle(
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .inversePrimary),
+                          ),
                         ],
                       ),
                     ),
 
                     //Note: song progress bar
                     Slider(
-                        min: 0,
-                        max: 100,
-                        value: 50,
-                        activeColor: Colors.green,
-                        thumbColor: Colors.white,
-                        onChanged: (value) {}),
+                      min: 0,
+                      max: value.totalDuration.inSeconds.toDouble(),
+                      value: value.currentDuration.inSeconds.toDouble(),
+                      activeColor: Colors.green,
+                      thumbColor: Colors.white,
+                      inactiveColor: Colors.grey.shade500,
+                      onChanged: (double double) {
+                        //Info: during when user drags the slider
+                      },
+                      onChangeEnd: (double double) {
+                        //Info: sliding ends, go to that position in song duration
+                        value.seek(Duration(seconds: double.toInt()));
+                      },
+                    ),
                   ],
                 ),
 
@@ -126,26 +178,47 @@ class SongPage extends StatelessWidget {
                   children: [
                     //Note: skip previous button
                     Expanded(
-                        child: GestureDetector(
-                            onTap: () {},
-                            child: NeuBox(child: Icon(Icons.skip_previous)))),
+                      child: GestureDetector(
+                        onTap: value.playPreviousSong,
+                        child: NeuBox(
+                          child: Icon(
+                            Icons.skip_previous,
+                            color: Theme.of(context).colorScheme.inversePrimary,
+                          ),
+                        ),
+                      ),
+                    ),
 
                     const SizedBox(width: 20),
 
                     //Note: play/pause button
                     Expanded(
-                        flex: 2,
-                        child: GestureDetector(
-                            onTap: () {},
-                            child: NeuBox(child: Icon(Icons.play_arrow)))),
+                      flex: 2,
+                      child: GestureDetector(
+                        onTap: value.pauseOrResume,
+                        child: NeuBox(
+                          child: Icon(
+                            value.isPlaying ? Icons.pause : Icons.play_arrow,
+                            color: Theme.of(context).colorScheme.inversePrimary,
+                          ),
+                        ),
+                      ),
+                    ),
 
                     const SizedBox(width: 20),
 
                     //Note: skip forward button
                     Expanded(
-                        child: GestureDetector(
-                            onTap: () {},
-                            child: NeuBox(child: Icon(Icons.skip_next)))),
+                      child: GestureDetector(
+                        onTap: value.playNextSong,
+                        child: NeuBox(
+                          child: Icon(
+                            Icons.skip_next,
+                            color: Theme.of(context).colorScheme.inversePrimary,
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ],
