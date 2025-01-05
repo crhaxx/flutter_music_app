@@ -7,7 +7,7 @@ class MyDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: Theme.of(context).colorScheme.surface,
+      backgroundColor: Theme.of(context).colorScheme.background,
       child: Column(
         children: [
           //Note: logo
@@ -25,8 +25,15 @@ class MyDrawer extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 25.0, top: 25.0),
             child: ListTile(
-              title: const Text("HOME"),
-              leading: const Icon(Icons.home),
+              title: Text(
+                "HOME",
+                style: TextStyle(
+                    color: Theme.of(context).colorScheme.inversePrimary),
+              ),
+              leading: Icon(
+                Icons.home,
+                color: Theme.of(context).colorScheme.inversePrimary,
+              ),
               onTap: () => Navigator.pop(context),
             ),
           ),
@@ -35,8 +42,15 @@ class MyDrawer extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 25.0, top: 0),
             child: ListTile(
-              title: const Text("SETTINGS"),
-              leading: const Icon(Icons.settings),
+              title: Text(
+                "SETTINGS",
+                style: TextStyle(
+                    color: Theme.of(context).colorScheme.inversePrimary),
+              ),
+              leading: Icon(
+                Icons.settings,
+                color: Theme.of(context).colorScheme.inversePrimary,
+              ),
               onTap: () {
                 //Note: pop drawer
                 Navigator.pop(context);
