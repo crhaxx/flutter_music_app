@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_music_app/components/my_drawer.dart';
+import 'package:flutter_music_app/models/playlist_provider.dart';
+import 'package:flutter_music_app/models/song.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -37,6 +40,36 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Theme.of(context).colorScheme.background,
       ),
       drawer: MyDrawer(),
+      body: Consumer<PlaylistProvider>(
+        builder: (context, value, child) {
+          //Note: get the playlist
+          final List<Song> playlist = value.playlist;
+
+          //Note: Return list view UI
+          return ListView.builder(
+            itemCount: playlist.length,
+            itemBuilder: (context, index) {
+              //Note: get invidiual song
+              final Song song = playlist[index];
+
+              //Note: return list title UI
+              return ListTile(
+                title: Text(
+                  song.songName,
+                  style: TextStyle(
+                      color: Theme.of(context).colorScheme.inversePrimary),
+                ),
+                subtitle: Text(
+                  song.artistName,
+                  style: TextStyle(
+                      color: Theme.of(context).colorScheme.inversePrimary),
+                ),
+                leading: Image.asset(song.albumArtImagePath),
+              );
+            },
+          );
+        },
+      ),
     );
   }
 }
