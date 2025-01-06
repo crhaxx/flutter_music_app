@@ -35,6 +35,46 @@ class PlaylistProvider extends ChangeNotifier {
       albumArtImagePath: "assets/images/Casanova.png",
       audioPath: "./audio/Casanova.mp3",
     ),
+
+    //Note: song 5
+    Song(
+      songName: "Cesta",
+      artistName: 'Kryštof',
+      albumArtImagePath: "assets/images/cesta.jpg",
+      audioPath: "./audio/cesta.mp3",
+    ),
+
+    //Note: song 6
+    Song(
+      songName: "Bára",
+      artistName: 'Kabát',
+      albumArtImagePath: "assets/images/bara.jpg",
+      audioPath: "./audio/Bara.mp3",
+    ),
+
+    //Note: song 7
+    Song(
+      songName: "Blonde Chaya",
+      artistName: 'Amaru x Gringo',
+      albumArtImagePath: "assets/images/blondechaya.jpg",
+      audioPath: "./audio/blondechaya.mp3",
+    ),
+
+    //Note: song 8
+    Song(
+      songName: "Balada",
+      artistName: 'Gusttavo Lima',
+      albumArtImagePath: "assets/images/Balada.jpg",
+      audioPath: "./audio/Balada.mp3",
+    ),
+
+    //Note: song 9
+    Song(
+      songName: "Anděl",
+      artistName: 'Xindl X',
+      albumArtImagePath: "assets/images/Anděl.jpg",
+      audioPath: "./audio/Anděl.mp3",
+    ),
   ];
 
   //Note: get current playing song index

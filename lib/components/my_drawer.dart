@@ -33,7 +33,7 @@ class MyDrawer extends StatelessWidget {
             padding: const EdgeInsets.only(left: 25.0, top: 25.0),
             child: ListTile(
               title: Text(
-                "Main Playlist",
+                "Všechny písničky",
                 style: TextStyle(
                     color: Theme.of(context).colorScheme.inversePrimary),
               ),
@@ -50,7 +50,7 @@ class MyDrawer extends StatelessWidget {
             padding: const EdgeInsets.only(left: 25.0, top: 0),
             child: ListTile(
               title: Text(
-                "Settings",
+                "Nastavení",
                 style: TextStyle(
                     color: Theme.of(context).colorScheme.inversePrimary),
               ),
@@ -74,7 +74,7 @@ class MyDrawer extends StatelessWidget {
             padding: const EdgeInsets.only(left: 25.0, top: 25.0),
             child: ListTile(
               title: Text(
-                "Soon",
+                "Více brzy",
                 style: TextStyle(
                     color: Theme.of(context).colorScheme.inversePrimary),
               ),

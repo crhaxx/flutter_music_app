@@ -28,7 +28,7 @@ class SettingsPage extends StatelessWidget {
           },
         ),
         title: Text(
-          "Settings",
+          "Nastavení",
           style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary),
         ),
         backgroundColor: Theme.of(context).colorScheme.background,
@@ -44,7 +44,7 @@ class SettingsPage extends StatelessWidget {
           children: [
             //Note: dark mode
             Text(
-              "Dark Mode",
+              "Tmavý režim",
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Theme.of(context).colorScheme.inversePrimary),
