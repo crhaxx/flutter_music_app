@@ -2,9 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_music_app/models/playlist_provider.dart';
 import 'package:flutter_music_app/themes/theme_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'pages/home_page.dart';
 
-void main() {
+void main() async {
+  //Note: supabase setup
+  await Supabase.initialize(
+    url: "https://hqhpvcqyjdmwfjjeiksm.supabase.co",
+    anonKey:
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhxaHB2Y3F5amRtd2ZqamVpa3NtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzYxNTM3ODMsImV4cCI6MjA1MTcyOTc4M30.yxUNu7XiSc3I7tzhezYdhCj41OmFJ2y8t-FArDDgm3Y",
+  );
+
   runApp(
     MultiProvider(
       providers: [
