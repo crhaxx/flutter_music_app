@@ -14,7 +14,9 @@ class NeuBox extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.background,
+        color: isDarkMode
+            ? Colors.grey.shade800
+            : Theme.of(context).colorScheme.background,
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           //Note: darker shadow on bottom right

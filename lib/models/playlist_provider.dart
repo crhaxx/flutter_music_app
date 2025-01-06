@@ -6,26 +6,34 @@ class PlaylistProvider extends ChangeNotifier {
   final List<Song> _playlist = [
     //Note: song 1
     Song(
-      songName: "Outside",
-      artistName: "Calvin Harris",
-      albumArtImagePath: "assets/images/DarkGraveLogo.png",
-      audioPath: "./audio/outside.mp3",
+      songName: "1000 Blunts",
+      artistName: '\$uicideboy\$',
+      albumArtImagePath: "assets/images/1000BLUNTS.jpg",
+      audioPath: "./audio/1000BLUNTS.mp3",
     ),
 
     //Note: song 2
     Song(
-      songName: "Outside",
-      artistName: "Calvin Harris",
-      albumArtImagePath: "assets/images/DarkGraveLogo.png",
-      audioPath: "./audio/outside.mp3",
+      songName: "Addicted To You",
+      artistName: 'Picture This',
+      albumArtImagePath: "assets/images/AddictedToYou.jpg",
+      audioPath: "./audio/AddictedToYou.mp3",
     ),
 
     //Note: song 3
     Song(
-      songName: "Outside",
-      artistName: "Calvin Harris",
-      albumArtImagePath: "assets/images/DarkGraveLogo.png",
-      audioPath: "./audio/outside.mp3",
+      songName: "Ai se eu te pego",
+      artistName: 'Michel Teló',
+      albumArtImagePath: "assets/images/Aiseeutepego.jpg",
+      audioPath: "./audio/AiSeEuTePego.mp3",
+    ),
+
+    //Note: song 4
+    Song(
+      songName: "Casanova",
+      artistName: 'Soolking and Gazo song',
+      albumArtImagePath: "assets/images/Casanova.png",
+      audioPath: "./audio/Casanova.mp3",
     ),
   ];
 

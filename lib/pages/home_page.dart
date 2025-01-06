@@ -59,7 +59,7 @@ class _HomePageState extends State<HomePage> {
           },
         ),
         title: Text(
-          "PLAYLIST",
+          "Main Playlist",
           style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary),
         ),
         backgroundColor: Theme.of(context).colorScheme.background,

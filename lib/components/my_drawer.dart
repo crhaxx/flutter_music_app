@@ -13,10 +13,17 @@ class MyDrawer extends StatelessWidget {
           //Note: logo
           DrawerHeader(
             child: Center(
-              child: Icon(
+              /* child: Icon(
                 Icons.music_note,
                 size: 40,
                 color: Theme.of(context).colorScheme.inversePrimary,
+              ), */
+              child: Text(
+                "Musicker Sondbox",
+                style: TextStyle(
+                    color: Theme.of(context).colorScheme.inversePrimary,
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold),
               ),
             ),
           ),
@@ -26,7 +33,7 @@ class MyDrawer extends StatelessWidget {
             padding: const EdgeInsets.only(left: 25.0, top: 25.0),
             child: ListTile(
               title: Text(
-                "HOME",
+                "Main Playlist",
                 style: TextStyle(
                     color: Theme.of(context).colorScheme.inversePrimary),
               ),
@@ -43,7 +50,7 @@ class MyDrawer extends StatelessWidget {
             padding: const EdgeInsets.only(left: 25.0, top: 0),
             child: ListTile(
               title: Text(
-                "SETTINGS",
+                "Settings",
                 style: TextStyle(
                     color: Theme.of(context).colorScheme.inversePrimary),
               ),
@@ -60,7 +67,24 @@ class MyDrawer extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => SettingsPage()));
               },
             ),
-          )
+          ),
+
+          //Note: home title
+          Padding(
+            padding: const EdgeInsets.only(left: 25.0, top: 25.0),
+            child: ListTile(
+              title: Text(
+                "Soon",
+                style: TextStyle(
+                    color: Theme.of(context).colorScheme.inversePrimary),
+              ),
+              leading: Icon(
+                Icons.new_label,
+                color: Theme.of(context).colorScheme.inversePrimary,
+              ),
+              onTap: () => Navigator.pop(context),
+            ),
+          ),
         ],
       ),
     );

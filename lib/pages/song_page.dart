@@ -104,10 +104,10 @@ class SongPage extends StatelessWidget {
                             ),
 
                             //Note: heart icon
-                            const Icon(
+                            /* const Icon(
                               Icons.favorite,
                               color: Colors.red,
-                            ),
+                            ), */
                           ],
                         ),
                       )
