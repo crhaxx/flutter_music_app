@@ -113,12 +113,19 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: BottomAppBar(
         color: Theme.of(context).colorScheme.background,
         child: Consumer<PlaylistProvider>(builder: (context, value, child) {
+          //Note: get playlist
+          final playlist = value.playlist;
+
+          //Note: get current song
+          final currentSong = playlist[value.currentSongIndex ?? 0];
+
           showbaner = value.currentSongIndex == null ? false : true;
           return Visibility(
             visible: showbaner,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                Image.asset(currentSong.albumArtImagePath),
                 Text(
                   formatTime(value.currentDuration),
                   style: TextStyle(
