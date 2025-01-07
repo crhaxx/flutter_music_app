@@ -75,6 +75,14 @@ class PlaylistProvider extends ChangeNotifier {
       albumArtImagePath: "assets/images/Anděl.jpg",
       audioPath: "./audio/Anděl.mp3",
     ),
+
+    //Note: song 10
+    Song(
+      songName: "Club Can't Handle Me",
+      artistName: 'Flo Rida',
+      albumArtImagePath: "assets/images/ClubCan'tHandleMe.jpg",
+      audioPath: "./audio/ClubCantHandleMe.mp3",
+    ),
   ];
 
   //Note: get current playing song index

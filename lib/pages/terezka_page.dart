@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_music_app/components/my_drawer.dart';
 import 'package:flutter_music_app/database%20model/playlist.dart';
 import 'package:flutter_music_app/databases/playlist_database.dart';
-import 'package:flutter_music_app/models/playlist_provider.dart';
-import 'package:flutter_music_app/models/song.dart';
-import 'package:provider/provider.dart';
 
 class TerezkasPage extends StatefulWidget {
   const TerezkasPage({super.key});

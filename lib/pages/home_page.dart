@@ -16,6 +16,19 @@ class _HomePageState extends State<HomePage> {
   //Note: get the playlist provider
   late final dynamic playlistProvider;
 
+  bool _showMusicBar = false;
+
+  //Note: convert duration into minutes and seconds
+  String formatTime(Duration duration) {
+    String twoDigitSeconds =
+        duration.inSeconds.remainder(60).toString().padLeft(2, '0');
+    String formattedTime = "${duration.inMinutes}:$twoDigitSeconds";
+
+    return formattedTime;
+  }
+
+  bool showbaner = false;
+
   @override
   void initState() {
     super.initState();
@@ -28,6 +41,7 @@ class _HomePageState extends State<HomePage> {
   void goToSong(int songIndex) {
     //Note: update current song index
     playlistProvider.currentSongIndex = songIndex;
+    _showMusicBar = true;
 
     //Note: navigate to song page
     Navigator.push(
@@ -96,6 +110,85 @@ class _HomePageState extends State<HomePage> {
           );
         },
       ),
+      bottomNavigationBar: BottomAppBar(
+        color: Theme.of(context).colorScheme.background,
+        child: Consumer<PlaylistProvider>(builder: (context, value, child) {
+          showbaner = value.currentSongIndex == null ? false : true;
+          return Visibility(
+            visible: showbaner,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  formatTime(value.currentDuration),
+                  style: TextStyle(
+                      color: Theme.of(context).colorScheme.inversePrimary,
+                      fontSize: 10),
+                ),
+                Slider(
+                  min: 0,
+                  max: value.totalDuration.inSeconds.toDouble(),
+                  value: value.currentDuration.inSeconds.toDouble(),
+                  activeColor: Colors.green,
+                  thumbColor: Colors.white,
+                  inactiveColor: Colors.grey.shade500,
+                  onChanged: (double double) {
+                    //Info: during when user drags the slider
+                  },
+                  onChangeEnd: (double double) {
+                    //Info: sliding ends, go to that position in song duration
+                    value.seek(Duration(seconds: double.toInt()));
+                  },
+                ),
+                Text(
+                  formatTime(value.totalDuration),
+                  style: TextStyle(
+                      color: Theme.of(context).colorScheme.inversePrimary,
+                      fontSize: 10),
+                ),
+                IconButton(
+                  onPressed: () {
+                    value.playPreviousSong();
+                  },
+                  icon: Icon(
+                    Icons.skip_previous,
+                    size: 30,
+                    color: Theme.of(context).colorScheme.inversePrimary,
+                  ),
+                ),
+                IconButton(
+                  onPressed: () {
+                    value.isPlaying ? value.pause() : value.resume();
+                  },
+                  icon: Icon(
+                    value.isPlaying ? Icons.pause : Icons.play_arrow,
+                    size: 30,
+                    color: Theme.of(context).colorScheme.inversePrimary,
+                  ),
+                ),
+                IconButton(
+                  onPressed: () {
+                    value.playNextSong();
+                  },
+                  icon: Icon(
+                    Icons.skip_next,
+                    size: 30,
+                    color: Theme.of(context).colorScheme.inversePrimary,
+                  ),
+                ),
+              ],
+            ),
+          );
+        }),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          goToSong(playlistProvider.currentSongIndex);
+        },
+        child: Icon(Icons.music_note),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      //persistentFooterAlignment: AlignmentDirectional.centerStart,
     );
   }
 }

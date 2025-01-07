@@ -39,7 +39,10 @@ class SongPage extends StatelessWidget {
                   children: [
                     //Note: back button
                     IconButton(
-                        onPressed: () => Navigator.pop(context),
+                        onPressed: () {
+                          Navigator.pop(context);
+                          //getCurrent(value);
+                        },
                         icon: Icon(
                           Icons.arrow_back,
                           color: Theme.of(context).colorScheme.inversePrimary,
@@ -47,7 +50,7 @@ class SongPage extends StatelessWidget {
 
                     //Note: title
                     Text(
-                      "PLAYLIST",
+                      "Všechny písničky",
                       style: TextStyle(
                           color: Theme.of(context).colorScheme.inversePrimary),
                     ),
