@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_music_app/pages/home_page.dart';
-import 'package:flutter_music_app/pages/nikolas_page.dart';
+import 'package:flutter_music_app/pages/playlists_page.dart';
 import 'package:flutter_music_app/pages/settings_page.dart';
-import 'package:flutter_music_app/pages/terezka_page.dart';
 
 class MyDrawer extends StatelessWidget {
   MyDrawer({super.key});
@@ -58,45 +57,21 @@ class MyDrawer extends StatelessWidget {
             padding: const EdgeInsets.only(left: 25.0, top: 0),
             child: ListTile(
               title: Text(
-                "Nikolas",
+                "Playlisty",
                 style: TextStyle(
                     color: Theme.of(context).colorScheme.inversePrimary),
               ),
               leading: Icon(
-                Icons.pedal_bike_outlined,
+                Icons.playlist_add_check_circle,
                 color: Theme.of(context).colorScheme.inversePrimary,
               ),
               onTap: () {
                 //Note: pop drawer
                 Navigator.pop(context);
 
-                //Note: navigate to nikolas page
+                //Note: navigate to playlists page
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => NikolasPage()));
-              },
-            ),
-          ),
-
-          //Note: terezka title
-          Padding(
-            padding: const EdgeInsets.only(left: 25.0, top: 0),
-            child: ListTile(
-              title: Text(
-                "Terezka",
-                style: TextStyle(
-                    color: Theme.of(context).colorScheme.inversePrimary),
-              ),
-              leading: Icon(
-                Icons.motorcycle_rounded,
-                color: Theme.of(context).colorScheme.inversePrimary,
-              ),
-              onTap: () {
-                //Note: pop drawer
-                Navigator.pop(context);
-
-                //Note: navigate to settings page
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => TerezkasPage()));
+                    MaterialPageRoute(builder: (context) => PlaylistsPage()));
               },
             ),
           ),

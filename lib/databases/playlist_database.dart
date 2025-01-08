@@ -11,19 +11,9 @@ class PlaylistDatabase {
   }
 
   //Note: Read nikolas
-  final streamNikolas = Supabase.instance.client
+  final streamPlaylists = Supabase.instance.client
       .from('playlists')
-      .stream(primaryKey: ['id'])
-      .eq('user', 'nikolas')
-      .map((data) =>
-          data.map((playlistMap) => Playlist.fromMap(playlistMap)).toList());
-
-  //Note: Read terezka
-  final streamTerezka = Supabase.instance.client
-      .from('playlists')
-      .stream(primaryKey: ['id'])
-      .eq('user', 'terezka')
-      .map((data) =>
+      .stream(primaryKey: ['id']).map((data) =>
           data.map((playlistMap) => Playlist.fromMap(playlistMap)).toList());
 
   //Note: Update

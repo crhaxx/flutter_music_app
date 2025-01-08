@@ -4,7 +4,9 @@ import 'package:flutter_music_app/models/playlist_provider.dart';
 import 'package:provider/provider.dart';
 
 class SongPage extends StatelessWidget {
-  const SongPage({super.key});
+  final String playlistname;
+
+  const SongPage({Key? key, required this.playlistname}) : super(key: key);
 
   //Note: convert duration into minutes and seconds
   String formatTime(Duration duration) {
@@ -50,7 +52,7 @@ class SongPage extends StatelessWidget {
 
                     //Note: title
                     Text(
-                      "Všechny písničky",
+                      playlistname,
                       style: TextStyle(
                           color: Theme.of(context).colorScheme.inversePrimary),
                     ),

@@ -16,8 +16,6 @@ class _HomePageState extends State<HomePage> {
   //Note: get the playlist provider
   late final dynamic playlistProvider;
 
-  bool _showMusicBar = false;
-
   //Note: convert duration into minutes and seconds
   String formatTime(Duration duration) {
     String twoDigitSeconds =
@@ -41,13 +39,14 @@ class _HomePageState extends State<HomePage> {
   void goToSong(int songIndex) {
     //Note: update current song index
     playlistProvider.currentSongIndex = songIndex;
-    _showMusicBar = true;
 
     //Note: navigate to song page
     Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => SongPage(),
+          builder: (context) => SongPage(
+            playlistname: "Všechny písničky",
+          ),
         ));
   }
 
@@ -68,7 +67,6 @@ class _HomePageState extends State<HomePage> {
               onPressed: () {
                 Scaffold.of(context).openDrawer();
               },
-              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
             );
           },
         ),
@@ -76,6 +74,18 @@ class _HomePageState extends State<HomePage> {
           "Všechny písničky",
           style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary),
         ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              showSearch(
+                context: context,
+                delegate: CustomSearchDelegate(),
+              );
+            },
+            icon: Icon(Icons.search),
+            color: Theme.of(context).colorScheme.inversePrimary,
+          ),
+        ],
         backgroundColor: Theme.of(context).colorScheme.background,
       ),
       drawer: MyDrawer(),
@@ -110,9 +120,9 @@ class _HomePageState extends State<HomePage> {
           );
         },
       ),
-      bottomNavigationBar: BottomAppBar(
-        color: Theme.of(context).colorScheme.background,
-        child: Consumer<PlaylistProvider>(builder: (context, value, child) {
+
+      bottomNavigationBar: Consumer<PlaylistProvider>(
+        builder: (context, value, child) {
           //Note: get playlist
           final playlist = value.playlist;
 
@@ -122,80 +132,213 @@ class _HomePageState extends State<HomePage> {
           showbaner = value.currentSongIndex == null ? false : true;
           return Visibility(
             visible: showbaner,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(currentSong.albumArtImagePath),
-                Text(
-                  formatTime(value.currentDuration),
-                  style: TextStyle(
+            child: BottomAppBar(
+              color: Theme.of(context).colorScheme.tertiary,
+              child: Row(
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => SongPage(
+                              playlistname: "Všechny písničky",
+                            ),
+                          ));
+                    },
+                    child: Container(
+                      width: 50,
+                      height: 50,
+                      child: Image.asset(
+                        currentSong.albumArtImagePath,
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 15),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => SongPage(
+                              playlistname: "Všechny písničky",
+                            ),
+                          ));
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          currentSong.songName,
+                          style: TextStyle(
+                              color:
+                                  Theme.of(context).colorScheme.inversePrimary,
+                              fontSize: 13),
+                        ),
+                        Text(
+                          currentSong.artistName,
+                          style: TextStyle(
+                              color:
+                                  Theme.of(context).colorScheme.inversePrimary,
+                              fontSize: 9),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(width: 10),
+                  IconButton(
+                    onPressed: () {
+                      value.playPreviousSong();
+                    },
+                    icon: Icon(
+                      Icons.skip_previous,
+                      size: 30,
                       color: Theme.of(context).colorScheme.inversePrimary,
-                      fontSize: 10),
-                ),
-                Slider(
-                  min: 0,
-                  max: value.totalDuration.inSeconds.toDouble(),
-                  value: value.currentDuration.inSeconds.toDouble(),
-                  activeColor: Colors.green,
-                  thumbColor: Colors.white,
-                  inactiveColor: Colors.grey.shade500,
-                  onChanged: (double double) {
-                    //Info: during when user drags the slider
-                  },
-                  onChangeEnd: (double double) {
-                    //Info: sliding ends, go to that position in song duration
-                    value.seek(Duration(seconds: double.toInt()));
-                  },
-                ),
-                Text(
-                  formatTime(value.totalDuration),
-                  style: TextStyle(
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      value.isPlaying ? value.pause() : value.resume();
+                    },
+                    icon: Icon(
+                      value.isPlaying ? Icons.pause : Icons.play_arrow,
+                      size: 30,
                       color: Theme.of(context).colorScheme.inversePrimary,
-                      fontSize: 10),
-                ),
-                IconButton(
-                  onPressed: () {
-                    value.playPreviousSong();
-                  },
-                  icon: Icon(
-                    Icons.skip_previous,
-                    size: 30,
-                    color: Theme.of(context).colorScheme.inversePrimary,
+                    ),
                   ),
-                ),
-                IconButton(
-                  onPressed: () {
-                    value.isPlaying ? value.pause() : value.resume();
-                  },
-                  icon: Icon(
-                    value.isPlaying ? Icons.pause : Icons.play_arrow,
-                    size: 30,
-                    color: Theme.of(context).colorScheme.inversePrimary,
+                  IconButton(
+                    onPressed: () {
+                      value.playNextSong();
+                    },
+                    icon: Icon(
+                      Icons.skip_next,
+                      size: 30,
+                      color: Theme.of(context).colorScheme.inversePrimary,
+                    ),
                   ),
-                ),
-                IconButton(
-                  onPressed: () {
-                    value.playNextSong();
-                  },
-                  icon: Icon(
-                    Icons.skip_next,
-                    size: 30,
-                    color: Theme.of(context).colorScheme.inversePrimary,
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
           );
-        }),
+        },
       ),
-      floatingActionButton: FloatingActionButton(
+      /* floatingActionButton: FloatingActionButton(
         onPressed: () {
           goToSong(playlistProvider.currentSongIndex);
         },
         child: Icon(Icons.music_note),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat, */
       //persistentFooterAlignment: AlignmentDirectional.centerStart,
+    );
+  }
+}
+
+class CustomSearchDelegate extends SearchDelegate {
+  List<String> searchTermNames = [];
+  List<String> searchTermAuthors = [];
+  List<int> seachIndexes = [];
+
+  bool foundSongs = false;
+
+  void playSong(int index, context) {
+    Provider.of<PlaylistProvider>(context, listen: false).currentSongIndex =
+        index;
+
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => SongPage(
+            playlistname: "Všechny písničky",
+          ),
+        ));
+  }
+
+  @override
+  List<Widget> buildActions(BuildContext context) {
+    if (!foundSongs) {
+      for (int i = 0; i < PlaylistProvider().playlist.length; i++) {
+        final Song song = PlaylistProvider().playlist[i];
+        searchTermNames.add(song.songName);
+        searchTermAuthors.add(song.artistName);
+      }
+      foundSongs = true;
+    }
+    return [
+      IconButton(
+        icon: Icon(Icons.clear),
+        color: Theme.of(context).colorScheme.inversePrimary,
+        onPressed: () {
+          query = '';
+        },
+      ),
+    ];
+  }
+
+  @override
+  Widget buildLeading(BuildContext context) {
+    return IconButton(
+      icon: Icon(Icons.arrow_back),
+      color: Theme.of(context).colorScheme.inversePrimary,
+      onPressed: () {
+        close(context, null);
+      },
+    );
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    List<String> matchQuery = [];
+
+    for (var song in searchTermNames) {
+      if (song.toLowerCase().contains(query.toLowerCase())) {
+        matchQuery.add(song);
+      }
+    }
+
+    return ListView.builder(
+      itemCount: matchQuery.length,
+      itemBuilder: (context, index) {
+        var result = matchQuery[index];
+
+        return ListTile(
+          title: Text(result),
+          subtitle: Text(searchTermAuthors[index].toString()),
+          tileColor: Theme.of(context).colorScheme.background,
+          onTap: () {
+            playSong(index, context);
+          },
+        );
+      },
+    );
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    List<String> matchQuery = [];
+
+    for (var song in searchTermNames) {
+      if (song.toLowerCase().contains(query.toLowerCase())) {
+        matchQuery.add(song);
+      }
+    }
+
+    return ListView.builder(
+      itemCount: matchQuery.length,
+      itemBuilder: (context, index) {
+        var result = matchQuery[index];
+
+        return ListTile(
+          textColor: Theme.of(context).colorScheme.inversePrimary,
+          title: Text(result),
+          subtitle: Text(searchTermAuthors[index].toString()),
+          tileColor: Theme.of(context).colorScheme.background,
+          onTap: () {
+            playSong(index, context);
+          },
+        );
+      },
     );
   }
 }

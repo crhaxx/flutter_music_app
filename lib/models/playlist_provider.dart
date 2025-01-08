@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_music_app/models/song.dart';
@@ -83,6 +85,103 @@ class PlaylistProvider extends ChangeNotifier {
       albumArtImagePath: "assets/images/ClubCan'tHandleMe.jpg",
       audioPath: "./audio/ClubCantHandleMe.mp3",
     ),
+
+    //Note: song 11
+    Song(
+      songName: "Colapso",
+      artistName: 'Kevin Kaarl',
+      albumArtImagePath: "assets/images/Colapso.jpg",
+      audioPath: "./audio/Colapso.mp3",
+    ),
+
+    //Note: song 12
+    Song(
+      songName: "Corrida",
+      artistName: 'Kabát',
+      albumArtImagePath: "assets/images/corrida.jpg",
+      audioPath: "./audio/Kabt-Corrida.mp3",
+    ),
+
+    //Note: song 13
+    Song(
+      songName: "Die with a smile",
+      artistName: 'Lady Gaga a Bruno Mars',
+      albumArtImagePath: "assets/images/diewithsmile.jpg",
+      audioPath: "./audio/diewithsmile.mp3",
+    ),
+
+    //Note: song 14
+    Song(
+      songName: "Dole v dole",
+      artistName: 'Kabát',
+      albumArtImagePath: "assets/images/Dolevdole.jpg",
+      audioPath: "./audio/Dolevdole.mp3",
+    ),
+
+    //Note: song 15
+    Song(
+      songName: "El mismo sol",
+      artistName: 'Alvaro Soler',
+      albumArtImagePath: "assets/images/ElMismoSol.jpg",
+      audioPath: "./audio/BVj8K7PEqqSG9aCamPJ\$",
+    ),
+
+    //Note: song 16
+    Song(
+      songName: "Follow you",
+      artistName: 'Noizy',
+      albumArtImagePath: "assets/images/Followyou.jpg",
+      audioPath: "./audio/Followyou.mp3",
+    ),
+
+    //Info: NIK SECTION
+
+    //Note: song 1
+    Song(
+      songName: "Let Me Down Slowly",
+      artistName: 'Alec Benjamin',
+      albumArtImagePath: "assets/images/LetMeDownSlowly.jpg",
+      audioPath: "./audio/LetMeDownSlowly.mp3",
+    ),
+
+    //Note: song 2
+    Song(
+      songName: "Smells Like Teen Spirit",
+      artistName: 'Nirvana',
+      albumArtImagePath:
+          "assets/images/NirvanaSmellsLikeTeenSpirit.jpg", //assets/images/NirvanaSmellsLikeTeenSpirit.jpg
+      audioPath:
+          "./audio/NirvanaSmellsLikeTeenSpirit.mp3", //./audio/NirvanaSmellsLikeTeenSpirit.mp3
+    ),
+
+    //Note: song 3
+    Song(
+      songName: "Sailor Song",
+      artistName: 'Gigi Perez',
+      albumArtImagePath:
+          "assets/images/SailorSong.jpg", //assets/images/NirvanaSmellsLikeTeenSpirit.jpg
+      audioPath:
+          "./audio/SailorSong.mp3", //./audio/NirvanaSmellsLikeTeenSpirit.mp3
+    ),
+
+    //Note: song 4
+    Song(
+      songName: "Si No Estás",
+      artistName: 'iñigo quintero',
+      albumArtImagePath:
+          "assets/images/SiNoEstás.jpg", //assets/images/NirvanaSmellsLikeTeenSpirit.jpg
+      audioPath:
+          "./audio/SiNoEstás.mp3", //./audio/NirvanaSmellsLikeTeenSpirit.mp3
+    ),
+
+    //Note: song 5
+    Song(
+      songName: "Tek It",
+      artistName: 'Cafuné ',
+      albumArtImagePath:
+          "assets/images/TekIt.jpg", //assets/images/NirvanaSmellsLikeTeenSpirit.jpg
+      audioPath: "./audio/TekIt.mp3", //./audio/NirvanaSmellsLikeTeenSpirit.mp3
+    ),
   ];
 
   //Note: get current playing song index
@@ -155,6 +254,20 @@ class PlaylistProvider extends ChangeNotifier {
       if (_currentSongIndex! < _playlist.length - 1) {
         //Note: increment current song index
         currentSongIndex = _currentSongIndex! + 1;
+      } else {
+        //Note: go to first song
+        currentSongIndex = 0;
+      }
+    }
+  }
+
+  void playRandomNextSong() {
+    if (_currentSongIndex != null) {
+      //Info: go to next song if it's not the last song
+      if (_currentSongIndex! < _playlist.length - 1) {
+        //Note: increment current song index
+        int random = Random().nextInt(100);
+        currentSongIndex = _currentSongIndex! + random;
       } else {
         //Note: go to first song
         currentSongIndex = 0;
