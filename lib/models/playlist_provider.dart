@@ -138,6 +138,54 @@ class PlaylistProvider extends ChangeNotifier {
 
     //Note: song 1
     Song(
+      songName: "Black Friday",
+      artistName: 'Tom Odell',
+      albumArtImagePath: "assets/images/BlackFriday.jpg",
+      audioPath: "./audio/BlackFriday.mp3",
+    ),
+
+    //Note: song 1
+    Song(
+      songName: "Car's Outside",
+      artistName: 'James Arthur',
+      albumArtImagePath: "assets/images/CarsOutside.jpg",
+      audioPath: "./audio/CarsOutside.mp3",
+    ),
+
+    //Note: song 1
+    Song(
+      songName: "Girl of My Dreams",
+      artistName: 'Guti',
+      albumArtImagePath: "assets/images/GirlofMyDreams.jpg",
+      audioPath: "./audio/GirlofMyDreams.mp3",
+    ),
+
+    //Note: song 1
+    Song(
+      songName: "Idea 22",
+      artistName: 'Gibran Alcocer',
+      albumArtImagePath: "assets/images/Idea22.jpg",
+      audioPath: "./audio/Idea22.mp3",
+    ),
+
+    //Note: song 1
+    Song(
+      songName: "Infinity",
+      artistName: 'Jaymes Young',
+      albumArtImagePath: "assets/images/Infinity.jpg",
+      audioPath: "./audio/Infinity.mp3",
+    ),
+
+    //Note: song 1
+    Song(
+      songName: "Juliet",
+      artistName: 'Cavetown',
+      albumArtImagePath: "assets/images/Juliet.jpg",
+      audioPath: "./audio/Juliet.mp3",
+    ),
+
+    //Note: song 1
+    Song(
       songName: "Let Me Down Slowly",
       artistName: 'Alec Benjamin',
       albumArtImagePath: "assets/images/LetMeDownSlowly.jpg",
@@ -152,6 +200,16 @@ class PlaylistProvider extends ChangeNotifier {
           "assets/images/NirvanaSmellsLikeTeenSpirit.jpg", //assets/images/NirvanaSmellsLikeTeenSpirit.jpg
       audioPath:
           "./audio/NirvanaSmellsLikeTeenSpirit.mp3", //./audio/NirvanaSmellsLikeTeenSpirit.mp3
+    ),
+
+    //Note: song 2
+    Song(
+      songName: "People Help the People",
+      artistName: 'Birdy',
+      albumArtImagePath:
+          "assets/images/PeopleHelpThePeople.jpg", //assets/images/NirvanaSmellsLikeTeenSpirit.jpg
+      audioPath:
+          "./audio/PeopleHelpThePeople.mp3", //./audio/NirvanaSmellsLikeTeenSpirit.mp3
     ),
 
     //Note: song 3
@@ -172,6 +230,16 @@ class PlaylistProvider extends ChangeNotifier {
           "assets/images/SiNoEstás.jpg", //assets/images/NirvanaSmellsLikeTeenSpirit.jpg
       audioPath:
           "./audio/SiNoEstás.mp3", //./audio/NirvanaSmellsLikeTeenSpirit.mp3
+    ),
+
+    //Note: song 4
+    Song(
+      songName: "Someone Like You",
+      artistName: 'Adele',
+      albumArtImagePath:
+          "assets/images/SomeoneLikeYou.jpg", //assets/images/NirvanaSmellsLikeTeenSpirit.jpg
+      audioPath:
+          "./audio/SomeoneLikeYou.mp3", //./audio/NirvanaSmellsLikeTeenSpirit.mp3
     ),
 
     //Note: song 5
