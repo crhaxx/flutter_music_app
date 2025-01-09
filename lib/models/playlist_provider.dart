@@ -134,6 +134,22 @@ class PlaylistProvider extends ChangeNotifier {
       audioPath: "./audio/Followyou.mp3",
     ),
 
+    //Note: song 17
+    Song(
+      songName: "I Believe",
+      artistName: 'KAMRAD',
+      albumArtImagePath: "assets/images/IBelieve.jpg",
+      audioPath: "./audio/IBelieve.mp3",
+    ),
+
+    //Note: song 17
+    Song(
+      songName: "Maluma - Hola",
+      artistName: 'Flo Rida',
+      albumArtImagePath: "assets/images/MalumaHola.jpg",
+      audioPath: "./audio/MalumaHola.mp3",
+    ),
+
     //Info: NIK SECTION
 
     //Note: song 1

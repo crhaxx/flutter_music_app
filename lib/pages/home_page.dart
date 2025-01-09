@@ -238,6 +238,7 @@ class _HomePageState extends State<HomePage> {
 class CustomSearchDelegate extends SearchDelegate {
   List<String> searchTermNames = [];
   List<String> searchTermAuthors = [];
+  List<String> searchTermImages = [];
   List<int> seachIndexes = [];
 
   bool foundSongs = false;
@@ -262,6 +263,7 @@ class CustomSearchDelegate extends SearchDelegate {
         final Song song = PlaylistProvider().playlist[i];
         searchTermNames.add(song.songName);
         searchTermAuthors.add(song.artistName);
+        searchTermImages.add(song.albumArtImagePath);
       }
       foundSongs = true;
     }
@@ -306,8 +308,11 @@ class CustomSearchDelegate extends SearchDelegate {
           title: Text(result),
           subtitle: Text(searchTermAuthors[index].toString()),
           tileColor: Theme.of(context).colorScheme.background,
+          leading: Image.asset(searchTermImages[index].toString()),
           onTap: () {
-            playSong(index, context);
+            playSong(
+                searchTermNames.indexWhere((item) => item.contains(result)),
+                context);
           },
         );
       },
@@ -334,8 +339,11 @@ class CustomSearchDelegate extends SearchDelegate {
           title: Text(result),
           subtitle: Text(searchTermAuthors[index].toString()),
           tileColor: Theme.of(context).colorScheme.background,
+          leading: Image.asset(searchTermImages[index].toString()),
           onTap: () {
-            playSong(index, context);
+            playSong(
+                searchTermNames.indexWhere((item) => item.contains(result)),
+                context);
           },
         );
       },
