@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_music_app/components/my_drawer.dart';
 import 'package:flutter_music_app/models/playlist_provider.dart';
 import 'package:flutter_music_app/models/song.dart';
@@ -113,7 +114,14 @@ class _HomePageState extends State<HomePage> {
                   style: TextStyle(
                       color: Theme.of(context).colorScheme.inversePrimary),
                 ),
-                leading: Image.asset(song.albumArtImagePath),
+                leading: Container(
+                  height: 60,
+                  width: 50,
+                  child: Image.asset(
+                    song.albumArtImagePath,
+                    fit: BoxFit.fill,
+                  ),
+                ),
                 onTap: () => goToSong(index),
               );
             },
@@ -169,31 +177,43 @@ class _HomePageState extends State<HomePage> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          currentSong.songName,
-                          style: TextStyle(
-                              color:
-                                  Theme.of(context).colorScheme.inversePrimary,
-                              fontSize: 13),
+                        Container(
+                          width: 140,
+                          child: Text(
+                            currentSong.songName,
+                            style: TextStyle(
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .inversePrimary,
+                                fontSize: 13),
+                            overflow: TextOverflow.clip,
+                            //softWrap: true,
+                          ),
                         ),
-                        Text(
-                          currentSong.artistName,
-                          style: TextStyle(
-                              color:
-                                  Theme.of(context).colorScheme.inversePrimary,
-                              fontSize: 9),
+                        Container(
+                          width: 140,
+                          child: Text(
+                            textAlign: TextAlign.start,
+                            currentSong.artistName,
+                            style: TextStyle(
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .inversePrimary,
+                                fontSize: 9),
+                          ),
                         ),
                       ],
                     ),
                   ),
-                  SizedBox(width: 10),
+                  //SizedBox(width: 10),
+                  Spacer(flex: 1),
                   IconButton(
                     onPressed: () {
                       value.playPreviousSong();
                     },
                     icon: Icon(
                       Icons.skip_previous,
-                      size: 30,
+                      size: 33,
                       color: Theme.of(context).colorScheme.inversePrimary,
                     ),
                   ),
@@ -203,7 +223,7 @@ class _HomePageState extends State<HomePage> {
                     },
                     icon: Icon(
                       value.isPlaying ? Icons.pause : Icons.play_arrow,
-                      size: 30,
+                      size: 33,
                       color: Theme.of(context).colorScheme.inversePrimary,
                     ),
                   ),
@@ -213,7 +233,7 @@ class _HomePageState extends State<HomePage> {
                     },
                     icon: Icon(
                       Icons.skip_next,
-                      size: 30,
+                      size: 33,
                       color: Theme.of(context).colorScheme.inversePrimary,
                     ),
                   ),
@@ -339,7 +359,9 @@ class CustomSearchDelegate extends SearchDelegate {
           title: Text(result),
           subtitle: Text(searchTermAuthors[index].toString()),
           tileColor: Theme.of(context).colorScheme.background,
-          leading: Image.asset(searchTermImages[index].toString()),
+          leading: Image.asset(searchTermImages[
+                  searchTermNames.indexWhere((item) => item.contains(result))]
+              .toString()),
           onTap: () {
             playSong(
                 searchTermNames.indexWhere((item) => item.contains(result)),
