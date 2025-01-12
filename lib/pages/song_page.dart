@@ -139,11 +139,53 @@ class SongPage extends StatelessWidget {
                                     .inversePrimary),
                           ),
 
-                          /* //Note: shuffle icon
-                          Icon(Icons.shuffle),
+                          //Note: shuffle icon
+                          GestureDetector(
+                            onTap: () => Provider.of<PlaylistProvider>(context,
+                                            listen: false)
+                                        .playRandom ==
+                                    false
+                                ? Provider.of<PlaylistProvider>(context,
+                                        listen: false)
+                                    .playRandom = true
+                                : Provider.of<PlaylistProvider>(context,
+                                        listen: false)
+                                    .playRandom = false,
+                            child: Icon(
+                              Icons.shuffle,
+                              color: Provider.of<PlaylistProvider>(context)
+                                          .playRandom ==
+                                      false
+                                  ? Theme.of(context).colorScheme.scrim
+                                  : Theme.of(context)
+                                      .colorScheme
+                                      .inversePrimary,
+                            ),
+                          ),
 
                           //Note: repeat icon
-                          Icon(Icons.repeat), */
+                          GestureDetector(
+                            onTap: () => Provider.of<PlaylistProvider>(context,
+                                            listen: false)
+                                        .repeatSong ==
+                                    false
+                                ? Provider.of<PlaylistProvider>(context,
+                                        listen: false)
+                                    .repeatSong = true
+                                : Provider.of<PlaylistProvider>(context,
+                                        listen: false)
+                                    .repeatSong = false,
+                            child: Icon(
+                              Icons.repeat,
+                              color: Provider.of<PlaylistProvider>(context)
+                                          .repeatSong ==
+                                      false
+                                  ? Theme.of(context).colorScheme.scrim
+                                  : Theme.of(context)
+                                      .colorScheme
+                                      .inversePrimary,
+                            ),
+                          ),
 
                           //Note: end time
                           Text(

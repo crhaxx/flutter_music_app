@@ -4,7 +4,7 @@ import 'package:flutter_music_app/pages/playlists_page.dart';
 import 'package:flutter_music_app/pages/settings_page.dart';
 
 class MyDrawer extends StatelessWidget {
-  MyDrawer({super.key});
+  const MyDrawer({super.key});
 
   //Note: UI
   @override

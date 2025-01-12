@@ -33,33 +33,56 @@ class SettingsPage extends StatelessWidget {
         ),
         backgroundColor: Theme.of(context).colorScheme.background,
       ),
-      body: Container(
-        decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.secondary,
-            borderRadius: BorderRadius.circular(12)),
-        padding: const EdgeInsets.all(16),
-        margin: const EdgeInsets.all(25),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            //Note: dark mode
-            Text(
-              "Tmavý režim",
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Theme.of(context).colorScheme.inversePrimary),
-            ),
+      body: Column(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.secondary,
+                borderRadius: BorderRadius.circular(12)),
+            padding: const EdgeInsets.all(16),
+            margin: const EdgeInsets.all(25),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                //Note: dark mode
+                Text(
+                  "Tmavý režim",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).colorScheme.inversePrimary),
+                ),
 
-            //Note: switch
-            CupertinoSwitch(
-              value:
-                  Provider.of<ThemeProvider>(context, listen: false).isDarkMode,
-              onChanged: (value) =>
-                  Provider.of<ThemeProvider>(context, listen: false)
-                      .toggleTheme(),
-            )
-          ],
-        ),
+                //Note: switch
+                CupertinoSwitch(
+                  value: Provider.of<ThemeProvider>(context, listen: false)
+                      .isDarkMode,
+                  onChanged: (value) =>
+                      Provider.of<ThemeProvider>(context, listen: false)
+                          .toggleTheme(),
+                )
+              ],
+            ),
+          ),
+          Container(
+            decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.secondary,
+                borderRadius: BorderRadius.circular(12)),
+            padding: const EdgeInsets.all(16),
+            margin: const EdgeInsets.all(25),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                //Note: dark mode
+                Text(
+                  "Hrát náhodně",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).colorScheme.inversePrimary),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

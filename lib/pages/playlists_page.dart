@@ -46,7 +46,9 @@ class _PlaylistsPage extends State<PlaylistsPage> {
                 TextButton(
                   onPressed: () {
                     final newPlaylist = Playlist(
-                        name: playlistController.text, user: 'nikolas');
+                      name: playlistController.text,
+                      user: 'nikolas',
+                    );
 
                     //Note: Save in DB
                     playlistDatabase.createPlaylist(newPlaylist);

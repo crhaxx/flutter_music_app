@@ -104,6 +104,9 @@ class _HomePageState extends State<HomePage> {
 
               //Note: return list title UI
               return ListTile(
+                tileColor: playlistProvider.currentSongIndex == index
+                    ? Theme.of(context).colorScheme.tertiary
+                    : Theme.of(context).colorScheme.background,
                 title: Text(
                   song.songName,
                   style: TextStyle(

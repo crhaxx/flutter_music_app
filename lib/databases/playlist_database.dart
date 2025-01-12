@@ -10,7 +10,7 @@ class PlaylistDatabase {
     await database.insert(playlist.toMap());
   }
 
-  //Note: Read nikolas
+//Note: Read
   final streamPlaylists = Supabase.instance.client
       .from('playlists')
       .stream(primaryKey: ['id']).map((data) =>
